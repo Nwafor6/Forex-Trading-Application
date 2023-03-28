@@ -1,0 +1,50 @@
+{%extends 'partials/base.html'%}
+{%load static%}
+
+{% block content %} 
+    <div id="myDiv"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script>
+
+         var trace1 = {
+         type: "scatter",
+         mode: "lines",
+         name: 'AAPL High',
+         x: [{% for trading_account in accounts %}
+                '{{ trading_account.market_watch_time }}',
+                {% endfor %}],
+         y: [{% for trading_account in accounts %}
+              '{{ trading_account.equity }}',
+            {% endfor %}],
+         line: {color: '#17BECF'}
+         }
+
+         var trace2 = {
+         type: "scatter",
+         mode: "lines",
+         name: 'AAPL Low',
+         x: [{% for trading_account in accounts %}
+                '{{ trading_account.market_watch_time }}',
+                {% endfor %}],
+         y: [
+            {% for trading_account in accounts %}
+              '{{ trading_account.balance }}',
+            {% endfor %}
+          ],
+         line: {color: '#7F7F7F'}
+         }
+
+         var data = [trace1,trace2];
+
+         var layout = {
+         title: 'Basic Time Series',
+         };
+
+         Plotly.newPlot('myDiv', data, layout);
+
+ </script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{%extends 'partials/base.html'%}
+{%load static%}
+
+{% block content %}
+  <div class="container">
+    <div class="text-center mt-3"><h4>Click account to turn off</h4></div>
+    <div class="main_btn " style="display:flex; justify-content: space-around;">
+      <div class="btn_h">
+        <button class="btn btn-primary mt-3 mb-3" id="close_acc1">Account 1</button>
+      </div>
+      <div class="btn_h">
+        <button class="btn btn-info mt-3 mb-3" id="close_acc2">Account 2</button>
+      </div>
+      <div class="btn_h">
+        <button class="btn btn-danger mt-3 mb-3" id="close_acc3">Account 3</button>
+      </div>
+    </div>
+    <canvas id="chart_Acc1"></canvas>
+    <canvas id="chart_Acc2"></canvas>
+    <canvas id="chart_Acc3"></canvas>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+
+  <script src="{%static 'js/dashboard.js'%}"></script>
+{% endblock %}
